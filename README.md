@@ -8,9 +8,9 @@
 
 - [二、Lambda 表达式](https://github.com/weiwosuoai/java8_guide/blob/master/markdown_doc/%E4%BA%8C%E3%80%81Lambda%20%E8%A1%A8%E8%BE%BE%E5%BC%8F.md)
 
-- 3.函数式接口；
+- [三、函数式接口（Functional Interface）](https://github.com/weiwosuoai/java8_guide/blob/master/markdown_doc/%E4%B8%89%E3%80%81%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3%EF%BC%88Functional%20Interface%EF%BC%89.md)
 
-- 4.如何便捷地引用类方法及构造器；
+- [四、便捷的引用类的构造器及方法](https://github.com/weiwosuoai/java8_guide/blob/master/markdown_doc/%E4%B8%89%E3%80%81%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3%EF%BC%88Functional%20Interface%EF%BC%89.md)
 
 - 5.`Lambda` 作用域访问；
 
