@@ -1,10 +1,10 @@
 > 本教程翻译整理自 [https://github.com/winterbe/java8-tutorial](https://github.com/winterbe/java8-tutorial)
 
-> 想拥有更好的阅读体验，请访问 ==> [**Java8 新特性指导手册**](https://www.exception.site/course/3/chapter/1)
+> 想拥有更好的阅读体验，请访问 ==> :corn:[**Java8 新特性指导手册**](https://www.exception.site/course/3/chapter/1):corn:
 
-教程目录：
+**教程目录**：
 
-- [一、接口内允许添加默认方法](https://github.com/weiwosuoai/java8_guide/blob/master/markdown_doc/%E4%B8%80%E3%80%81%E6%8E%A5%E5%8F%A3%E5%86%85%E5%85%81%E8%AE%B8%E6%B7%BB%E5%8A%A0%E9%BB%98%E8%AE%A4%E6%96%B9%E6%B3%95.md)
+- [一、接口内允许添加默认实现的方法](https://github.com/weiwosuoai/java8_guide/blob/master/markdown_doc/%E4%B8%80%E3%80%81%E6%8E%A5%E5%8F%A3%E5%86%85%E5%85%81%E8%AE%B8%E6%B7%BB%E5%8A%A0%E9%BB%98%E8%AE%A4%E6%96%B9%E6%B3%95.md)
 
 - [二、Lambda 表达式](https://github.com/weiwosuoai/java8_guide/blob/master/markdown_doc/%E4%BA%8C%E3%80%81Lambda%20%E8%A1%A8%E8%BE%BE%E5%BC%8F.md)
 
@@ -17,6 +17,8 @@
     - [5.1 访问局部变量](https://github.com/weiwosuoai/java8_guide/blob/master/markdown_doc/5.1%20%E8%AE%BF%E9%97%AE%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F.md)
     
     - [5.2 访问成员变量和静态变量](https://github.com/weiwosuoai/java8_guide/blob/master/markdown_doc/5.2%20%E8%AE%BF%E9%97%AE%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F%E5%92%8C%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F.md)
+    
+    - [5.3 访问接口的默认方法](https://github.com/weiwosuoai/java8_guide/blob/master/markdown_doc/5.2%20%E8%AE%BF%E9%97%AE%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F%E5%92%8C%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F.md)
 
 - 6.内置的函数式接口；
 
