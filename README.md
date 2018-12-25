@@ -1,6 +1,10 @@
+# Java8 新特性指导手册
+
 > 本教程翻译整理自 [https://github.com/winterbe/java8-tutorial](https://github.com/winterbe/java8-tutorial)
 
-> 想拥有更好的阅读体验，请访问 ==> :corn:[**Java8 新特性指导手册**](https://www.exception.site/course/3/chapter/1):corn:
+---
+
+> 想拥有更好的阅读体验，请访问 :corn:   [**Java8 新特性指导手册**](https://www.exception.site/course/3/chapter/1)   :corn:
 
 **教程目录**：
 
@@ -18,9 +22,19 @@
     
     - [5.2 访问成员变量和静态变量](https://github.com/weiwosuoai/java8_guide/blob/master/markdown_doc/5.2%20%E8%AE%BF%E9%97%AE%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F%E5%92%8C%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F.md)
     
-    - [5.3 访问接口的默认方法](https://github.com/weiwosuoai/java8_guide/blob/master/markdown_doc/5.2%20%E8%AE%BF%E9%97%AE%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F%E5%92%8C%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F.md)
+    - [5.3 访问接口的默认方法](https://github.com/weiwosuoai/java8_guide/blob/master/markdown_doc/5.3%20%E8%AE%BF%E9%97%AE%E6%8E%A5%E5%8F%A3%E7%9A%84%E9%BB%98%E8%AE%A4%E6%96%B9%E6%B3%95.md)
 
-- 6.内置的函数式接口；
+- [六、内置的函数式接口](https://github.com/weiwosuoai/java8_guide/blob/master/markdown_doc/%E5%85%AD%E3%80%81%E5%86%85%E7%BD%AE%E7%9A%84%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3.md)
+
+    - [6.1 Predicate (断言)](https://github.com/weiwosuoai/java8_guide/blob/master/markdown_doc/6.1%20Predicate(%E6%96%AD%E8%A8%80).md)
+    
+    - [6.2 Function](https://github.com/weiwosuoai/java8_guide/blob/master/markdown_doc/6.2%20Function.md)
+    
+    - [6.3 Supplier (生产者)](https://github.com/weiwosuoai/java8_guide/blob/master/markdown_doc/6.3%20Supplier(%E7%94%9F%E4%BA%A7%E8%80%85).md)
+    
+    - [6.4 Consumer（消费者）](https://github.com/weiwosuoai/java8_guide/blob/master/markdown_doc/6.4%20Consumer(%E6%B6%88%E8%B4%B9%E8%80%85).md)
+    
+    - [6.5 Comparator](https://github.com/weiwosuoai/java8_guide/blob/master/markdown_doc/6.5%20Comparator.md)
 
 - 7.`Optionals`;
 
