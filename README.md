@@ -4,9 +4,11 @@
 
 ---
 
+![](https://exception-image-bucket.oss-cn-hangzhou.aliyuncs.com/154503851003416)
+
 > 想拥有更好的阅读体验，请访问 :corn:   [**Java8 新特性指导手册**](https://www.exception.site/course/3/chapter/1)   :corn:
 
-**教程目录**：
+## 教程目录：
 
 - [一、接口内允许添加默认实现的方法](https://github.com/weiwosuoai/java8_guide/blob/master/markdown_doc/%E4%B8%80%E3%80%81%E6%8E%A5%E5%8F%A3%E5%86%85%E5%85%81%E8%AE%B8%E6%B7%BB%E5%8A%A0%E9%BB%98%E8%AE%A4%E6%96%B9%E6%B3%95.md)
 
