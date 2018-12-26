@@ -7,7 +7,7 @@ _什么是 `Stream` 流？_
 
 需要注意的是，你只能对实现了 `java.util.Collection` 接口的类做流的操作。
 
-> Map 不支持 Stream 流。
+> `Map` 不支持 `Stream` 流。
 
 `Stream` 流支持同步执行，也支持并发执行。 
 
