@@ -36,7 +36,7 @@
     
     - [6.5 Comparator](https://github.com/weiwosuoai/java8_guide/blob/master/markdown_doc/6.5%20Comparator.md)
 
-- 7.`Optionals`;
+- [七、Optional](https://github.com/weiwosuoai/java8_guide/blob/master/markdown_doc/%E4%B8%83%E3%80%81Optional.md)
 
 - 8.`Streams` 流；
 
