@@ -4,13 +4,11 @@
 
 ---
 
-![](https://exception-image-bucket.oss-cn-hangzhou.aliyuncs.com/154503851003416)
-
 > 想拥有更好的阅读体验，请访问 :corn:   [**Java8 新特性指导手册**](https://www.exception.site/course/3/chapter/1)   :corn:
 
 ## 教程目录：
 
-- [一、接口内允许添加默认实现的方法](https://github.com/weiwosuoai/java8_guide/blob/master/markdown_doc/%E4%B8%80%E3%80%81%E6%8E%A5%E5%8F%A3%E5%86%85%E5%85%81%E8%AE%B8%E6%B7%BB%E5%8A%A0%E9%BB%98%E8%AE%A4%E6%96%B9%E6%B3%95.md)
+- [一、接口内允许添加默认实现的方法](#一、接口内允许添加默认实现的方法)
 
 - [二、Lambda 表达式](https://github.com/weiwosuoai/java8_guide/blob/master/markdown_doc/%E4%BA%8C%E3%80%81Lambda%20%E8%A1%A8%E8%BE%BE%E5%BC%8F.md)
 
@@ -51,3 +49,44 @@
 - 12.注解（`Annotations`）;
 
 也希望学完本系列教程的小伙伴能够熟练掌握和应用 Java8 的各种特性，使其成为在工作中的一门利器。废话不多说，让我们一起开启 Java8 新特性之旅吧！
+
+## 一、接口内允许添加默认实现的方法
+
+Java 8 允许我们通过 `default` 关键字对接口中定义的抽象方法提供一个默认的实现。
+
+请看下面示例代码：
+
+```java
+// 定义一个公式接口
+interface Formula {
+    // 计算
+    double calculate(int a);
+
+    // 求平方根
+    default double sqrt(int a) {
+        return Math.sqrt(a);
+    }
+}
+```
+
+在上面这个接口中，我们除了定义了一个抽象方法 `calculate`，还定义了一个带有默认实现的方法 `sqrt`。
+我们在实现这个接口时，可以只需要实现 `calculate` 方法，默认方法 `sqrt` 可以直接调用即可，也就是说我们可以不必强制实现 `sqrt` 方法。
+
+> 补充：通过 `default` 关键字这个新特性，可以非常方便地对之前的接口做拓展，而此接口的实现类不必做任何改动。
+
+```java
+Formula formula = new Formula() {
+    @Override
+    public double calculate(int a) {
+        return sqrt(a * 100);
+    }
+};
+
+formula.calculate(100);     // 100.0
+formula.sqrt(16);           // 4.0
+```
+上面通过匿名对象实现了 `Formula` 接口。但是即使是这样，我们为了完成一个 `sqrt(a * 100)` 简单计算，就写了 6 行代码，很是冗余。
+
+下个章节中，我们会学习 Lambda 表达式，更加优雅地书写代码。
+
+
