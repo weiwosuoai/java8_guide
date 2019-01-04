@@ -12,7 +12,7 @@
 
 - [二、Lambda 表达式](#Lambda-表达式)
 
-- [三、函数式接口（Functional Interface）](#函数式接口（Functional Interface）)
+- [三、函数式接口 Functional Interface](#函数式接口-Functional-Interface)
 
 - [四、便捷的引用类的构造器及方法](#便捷的引用类的构造器及方法)
 
@@ -127,7 +127,7 @@ names.sort((a, b) -> b.compareTo(a));
 
 `List` 集合现在已经添加了 `sort` 方法。而且 Java 编译器能够根据**类型推断机制**判断出参数类型，这样，你连入参的类型都可以省略啦，怎么样，是不是感觉很强大呢！
 
-## 函数式接口（Functional Interface）
+## 函数式接口 Functional Interface
 
 抛出一个疑问：在我们书写一段 Lambda 表达式后（比如上一章节中匿名内部类的 Lambda 表达式缩写形式），Java 编译器是如何进行类型推断的，它又是怎么知道重写的哪个方法的？
 
