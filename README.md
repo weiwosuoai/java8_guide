@@ -9,43 +9,25 @@
 ## 教程目录：
 
 - [一、接口内允许添加默认实现的方法](#接口内允许添加默认实现的方法)
-
 - [二、Lambda 表达式](#Lambda-表达式)
-
 - [三、函数式接口 Functional Interface](#函数式接口-Functional-Interface)
-
 - [四、便捷的引用类的构造器及方法](#便捷的引用类的构造器及方法)
-
 - [五、Lambda 访问外部变量及接口默认方法](#Lambda-访问外部变量及接口默认方法)
-
     - [5.1 访问局部变量](#访问局部变量)
-    
     - [5.2 访问成员变量和静态变量](#访问成员变量和静态变量)
-    
     - [5.3 访问接口的默认方法](#访问接口的默认方法)
-
 - [六、内置的函数式接口](#内置的函数式接口)
-
     - [6.1 Predicate 断言](#Predicate-断言)
-    
     - [6.2 Function](#Function)
-    
     - [6.3 Supplier 生产者](#Supplier-生产者)
-    
     - [6.4 Consumer 消费者](#Consumer-消费者)
-    
     - [6.5 Comparator](#Comparator)
-
 - [七、Optional](#Optional)
-
-- 8.`Streams` 流；
-
+- [八、Streams 流](#Stream-流)
+    - [8.1 Filter 过滤](#Filter-过滤)
 - 9.并行流（`Parallel Streams`）;
-
 - 10.`Maps`;
-
 - 11.新添加的日期 API;
-
 - 12.注解（`Annotations`）;
 
 也希望学完本系列教程的小伙伴能够熟练掌握和应用 Java8 的各种特性，使其成为在工作中的一门利器。废话不多说，让我们一起开启 Java8 新特性之旅吧！
@@ -470,6 +452,52 @@ optional.orElse("fallback");    // "bam"
 optional.ifPresent((s) -> System.out.println(s.charAt(0)));     // "b"
 ```
 
+## Stream 流
+
+这一章节，我们开始步入学习 `Stream` 流。
+
+_什么是 `Stream` 流？_
+
+简单来说，我们可以使用 `java.util.Stream` 对一个包含一个或多个元素的集合做各种操作。这些操作可能是 _中间操作_ 亦或是 _终端操作_。
+终端操作会返回一个结果，而中间操作会返回一个 `Stream` 流。
+
+需要注意的是，你只能对实现了 `java.util.Collection` 接口的类做流的操作。
+
+> `Map` 不支持 `Stream` 流。
+
+`Stream` 流支持同步执行，也支持并发执行。 
+
+让我们开始步入学习的旅程吧！Go !
+
+### Filter 过滤
+
+首先，我们创建一个 `List` 集合：
+
+```java
+List<String> stringCollection = new ArrayList<>();
+stringCollection.add("ddd2");
+stringCollection.add("aaa2");
+stringCollection.add("bbb1");
+stringCollection.add("aaa1");
+stringCollection.add("bbb3");
+stringCollection.add("ccc");
+stringCollection.add("bbb2");
+stringCollection.add("ddd1");
+```
+
+`Filter` 的入参是一个 `Predicate`, 上面已经说到，`Predicate` 是一个断言的中间操作，它能够帮我们筛选出我们需要的集合元素。它的返参同样
+是一个 `Stream` 流，我们可以通过 `foreach` 终端操作，来打印被筛选的元素：
+
+```java
+stringCollection
+    .stream()
+    .filter((s) -> s.startsWith("a"))
+    .forEach(System.out::println);
+
+// "aaa2", "aaa1"
+```
+
+> 注意：`foreach` 是一个终端操作，它的返参是 `void`, 我们无法对其再次进行流操作。
 
 
 
