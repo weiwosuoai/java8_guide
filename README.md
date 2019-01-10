@@ -25,6 +25,8 @@
 - [七、Optional](#Optional)
 - [八、Streams 流](#Stream-流)
     - [8.1 Filter 过滤](#Filter-过滤)
+    - [8.2 Sorted 排序](#Sorted-排序)
+    - [8.3 Map](#Map)
 - 9.并行流（`Parallel Streams`）;
 - 10.`Maps`;
 - 11.新添加的日期 API;
@@ -521,6 +523,22 @@ System.out.println(stringCollection);
 ```
 
 ### Map
+
+中间操作 `Map` 能够帮助我们将 `List` 中的每一个元素做功能处理。例如下面的示例，通过 `map` 我们将每一个 `string` 转成大写：
+
+```java
+stringCollection
+    .stream()
+    .map(String::toUpperCase)
+    .sorted((a, b) -> b.compareTo(a))
+    .forEach(System.out::println);
+
+// "DDD2", "DDD1", "CCC", "BBB3", "BBB2", "AAA2", "AAA1"
+```
+
+另外，我们还可以做对象之间的转换，业务中比较常用的是将 `DO`（数据库对象） 转换成 `DTO`（业务对象） 对象。
+
+
 
 
 
