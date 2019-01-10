@@ -24,19 +24,19 @@
     
     - [5.3 访问接口的默认方法](#访问接口的默认方法)
 
-- [六、内置的函数式接口](https://github.com/weiwosuoai/java8_guide/blob/master/markdown_doc/%E5%85%AD%E3%80%81%E5%86%85%E7%BD%AE%E7%9A%84%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3.md)
+- [六、内置的函数式接口](#内置的函数式接口)
 
-    - [6.1 Predicate (断言)](https://github.com/weiwosuoai/java8_guide/blob/master/markdown_doc/6.1%20Predicate(%E6%96%AD%E8%A8%80).md)
+    - [6.1 Predicate (断言)](#Predicate(断言))
     
-    - [6.2 Function](https://github.com/weiwosuoai/java8_guide/blob/master/markdown_doc/6.2%20Function.md)
+    - [6.2 Function](#Function)
     
-    - [6.3 Supplier (生产者)](https://github.com/weiwosuoai/java8_guide/blob/master/markdown_doc/6.3%20Supplier(%E7%94%9F%E4%BA%A7%E8%80%85).md)
+    - [6.3 Supplier (生产者)](#Supplier(生产者))
     
-    - [6.4 Consumer（消费者）](https://github.com/weiwosuoai/java8_guide/blob/master/markdown_doc/6.4%20Consumer(%E6%B6%88%E8%B4%B9%E8%80%85).md)
+    - [6.4 Consumer（消费者）](#Consumer(消费者))
     
-    - [6.5 Comparator](https://github.com/weiwosuoai/java8_guide/blob/master/markdown_doc/6.5%20Comparator.md)
+    - [6.5 Comparator](#Comparator)
 
-- [七、Optional](https://github.com/weiwosuoai/java8_guide/blob/master/markdown_doc/%E4%B8%83%E3%80%81Optional.md)
+- [七、Optional](#Optional)
 
 - 8.`Streams` 流；
 
@@ -354,6 +354,122 @@ Formula formula = (a) -> sqrt(a * 100);
 ```
 
 带有默认实现的接口方法，是**不能**在 lambda 表达式中访问的，上面这段代码将无法被编译通过。
+
+## 内置的函数式接口
+
+JDK 1.8 API 包含了很多内置的函数式接口。其中就包括我们在老版本中经常见到的 Comparator 和 Runnable，Java 8 为他们都添加了 @FunctionalInterface 注解，以用来支持 Lambda 表达式。
+
+值得一提的是，除了 Comparator 和 Runnable 外，还有一些新的函数式接口，它们很多都借鉴于知名的 [Google Guava](https://github.com/google/guava) 库。
+
+对于它们，即使你已经非常熟悉了，还是最好了解一下的：
+
+### Predicate(断言)
+
+`Predicate` 是一个可以指定入参类型，并返回 boolean 值的函数式接口。它内部提供了一些带有默认实现的方法，可以
+被用来组合一个复杂的逻辑判断（`and`, `or`, `negate`）：
+
+```java
+Predicate<String> predicate = (s) -> s.length() > 0;
+
+predicate.test("foo");              // true
+predicate.negate().test("foo");     // false
+
+Predicate<Boolean> nonNull = Objects::nonNull;
+Predicate<Boolean> isNull = Objects::isNull;
+
+Predicate<String> isEmpty = String::isEmpty;
+Predicate<String> isNotEmpty = isEmpty.negate();
+```
+    
+### Function
+
+`Function` 函数式接口的作用是，我们可以为其提供一个原料，他给生产一个最终的产品。通过它提供的默认方法，组合,链行处理(`compose`, `andThen`)：
+
+```java
+Function<String, Integer> toInteger = Integer::valueOf;
+Function<String, String> backToString = toInteger.andThen(String::valueOf);
+
+backToString.apply("123");     // "123"
+```
+    
+### Supplier(生产者)
+
+`Supplier` 与 `Function` 不同，它不接受入参，直接为我们生产一个指定的结果，有点像生产者模式：
+
+```java
+class Person {
+    String firstName;
+    String lastName;
+
+    Person() {}
+
+    Person(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+}
+```
+
+```java
+Supplier<Person> personSupplier = Person::new;
+personSupplier.get();   // new Person
+```
+    
+### Consumer(消费者)
+
+对于 `Consumer`，我们需要提供入参，用来被消费，如下面这段示例代码：
+
+```java
+class Person {
+    String firstName;
+    String lastName;
+
+    Person() {}
+
+    Person(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+}
+``` 
+
+```java
+Consumer<Person> greeter = (p) -> System.out.println("Hello, " + p.firstName);
+greeter.accept(new Person("Luke", "Skywalker"));
+```
+    
+### Comparator
+
+`Comparator` 在 Java 8 之前是使用比较普遍的。Java 8 中除了将其升级成了函数式接口，还为它拓展了一些默认方法：
+
+```java
+Comparator<Person> comparator = (p1, p2) -> p1.firstName.compareTo(p2.firstName);
+
+Person p1 = new Person("John", "Doe");
+Person p2 = new Person("Alice", "Wonderland");
+
+comparator.compare(p1, p2);             // > 0
+comparator.reversed().compare(p1, p2);  // < 0
+```
+
+## Optional
+
+首先，`Optional` 它不是一个函数式接口，设计它的目的是为了防止空指针异常（`NullPointerException`），要知道在 Java 编程中，
+空指针异常可是臭名昭著的。
+
+让我们来快速了解一下 `Optional` 要如何使用！你可以将 `Optional` 看做是包装对象（可能是 `null`, 也有可能非 `null`）的容器。当你定义了
+一个方法，这个方法返回的对象可能是空，也有可能非空的时候，你就可以考虑用 `Optional` 来包装它，这也是在 Java 8 被推荐使用的做法。
+
+```java
+Optional<String> optional = Optional.of("bam");
+
+optional.isPresent();           // true
+optional.get();                 // "bam"
+optional.orElse("fallback");    // "bam"
+
+optional.ifPresent((s) -> System.out.println(s.charAt(0)));     // "b"
+```
+
 
 
 
