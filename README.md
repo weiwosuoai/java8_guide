@@ -16,13 +16,13 @@
 
 - [四、便捷的引用类的构造器及方法](#便捷的引用类的构造器及方法)
 
-- [五、Lambda 访问外部变量及接口默认方法](https://github.com/weiwosuoai/java8_guide/blob/master/markdown_doc/%E4%BA%94%E3%80%81Lambda%20%E8%AE%BF%E9%97%AE%E5%A4%96%E9%83%A8%E5%8F%98%E9%87%8F%E5%8F%8A%E6%8E%A5%E5%8F%A3%E9%BB%98%E8%AE%A4%E6%96%B9%E6%B3%95.md)
+- [五、Lambda 访问外部变量及接口默认方法](#Lambda-访问外部变量及接口默认方法)
 
-    - [5.1 访问局部变量](https://github.com/weiwosuoai/java8_guide/blob/master/markdown_doc/5.1%20%E8%AE%BF%E9%97%AE%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F.md)
+    - [5.1 访问局部变量](#访问局部变量)
     
-    - [5.2 访问成员变量和静态变量](https://github.com/weiwosuoai/java8_guide/blob/master/markdown_doc/5.2%20%E8%AE%BF%E9%97%AE%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F%E5%92%8C%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F.md)
+    - [5.2 访问成员变量和静态变量](#访问成员变量和静态变量)
     
-    - [5.3 访问接口的默认方法](https://github.com/weiwosuoai/java8_guide/blob/master/markdown_doc/5.3%20%E8%AE%BF%E9%97%AE%E6%8E%A5%E5%8F%A3%E7%9A%84%E9%BB%98%E8%AE%A4%E6%96%B9%E6%B3%95.md)
+    - [5.3 访问接口的默认方法](#访问接口的默认方法)
 
 - [六、内置的函数式接口](https://github.com/weiwosuoai/java8_guide/blob/master/markdown_doc/%E5%85%AD%E3%80%81%E5%86%85%E7%BD%AE%E7%9A%84%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3.md)
 
@@ -231,6 +231,129 @@ Person person = personFactory.create("Peter", "Parker");
 ```
 `Person::new` 这段代码，能够直接引用 `Person` 类的构造器。然后 Java 编译器能够根据上下文选中正确的构造器去实现 `PersonFactory.create` 方法。
 
+## Lambda 访问外部变量及接口默认方法
+
+在本章节中，我们将会讨论如何在 lambda 表达式中访问外部变量（包括：局部变量，成员变量，静态变量，接口的默认方法.），它与匿名内部类访问外部变量很相似。
+
+### 访问局部变量
+
+在 Lambda 表达式中，我们可以访问外部的 `final` 类型变量，如下面的示例代码：
+
+```java
+// 转换器
+@FunctionalInterface
+interface Converter<F, T> {
+    T convert(F from);
+}
+```
+
+```java
+final int num = 1;
+Converter<Integer, String> stringConverter =
+        (from) -> String.valueOf(from + num);
+
+stringConverter.convert(2);     // 3
+```
+
+与匿名内部类不同的是，我们不必显式声明 `num` 变量为 `final` 类型，下面这段代码同样有效：
+
+```java
+int num = 1;
+Converter<Integer, String> stringConverter =
+        (from) -> String.valueOf(from + num);
+
+stringConverter.convert(2);     // 3
+```
+
+但是 `num` 变量必须为隐式的 `final` 类型，何为隐式的 `final` 呢？就是说到编译期为止，`num` 对象是不能被改变的，如下面这段代码，就不能被编译通过：
+
+```java
+int num = 1;
+Converter<Integer, String> stringConverter =
+        (from) -> String.valueOf(from + num);
+num = 3;
+```
+
+在 lambda 表达式内部改变 `num` 值同样编译不通过，需要注意, 比如下面的示例代码：
+
+```java
+int num = 1;
+Converter<Integer, String> converter = (from) -> {
+	String value = String.valueOf(from + num);
+	num = 3;
+	return value;
+};
+```
+    
+### 访问成员变量和静态变量
+
+上一章节中，了解了如何在 Lambda 表达式中访问局部变量。与局部变量相比，在 Lambda 表达式中对成员变量和静态变量拥有读写权限：
+
+```java
+    @FunctionalInterface
+    interface Converter<F, T> {
+        T convert(F from);
+    }
+```
+
+```java
+class Lambda4 {
+        // 静态变量
+        static int outerStaticNum;
+        // 成员变量
+        int outerNum;
+
+        void testScopes() {
+            Converter<Integer, String> stringConverter1 = (from) -> {
+                // 对成员变量赋值
+                outerNum = 23;
+                return String.valueOf(from);
+            };
+
+            Converter<Integer, String> stringConverter2 = (from) -> {
+                // 对静态变量赋值
+                outerStaticNum = 72;
+                return String.valueOf(from);
+            };
+        }
+    }
+```
+    
+### 访问接口的默认方法
+
+还记得第一章节中定义的那个 `Formula` (公式) 接口吗？
+
+```java
+@FunctionalInterface
+interface Formula {
+	// 计算
+	double calculate(int a);
+
+	// 求平方根
+	default double sqrt(int a) {
+		return Math.sqrt(a);
+	}
+}
+```
+
+当时，我们在接口中定义了一个带有默认实现的 `sqrt` 求平方根方法，在匿名内部类中我们可以很方便的访问此方法：
+
+```java
+Formula formula = new Formula() {
+	@Override
+	public double calculate(int a) {
+		return sqrt(a * 100);
+	}
+};
+```
+
+但是在 lambda 表达式中可不行：
+
+```java
+Formula formula = (a) -> sqrt(a * 100);
+```
+
+带有默认实现的接口方法，是**不能**在 lambda 表达式中访问的，上面这段代码将无法被编译通过。
 
 
 
