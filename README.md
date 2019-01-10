@@ -499,6 +499,31 @@ stringCollection
 
 > 注意：`foreach` 是一个终端操作，它的返参是 `void`, 我们无法对其再次进行流操作。
 
+### Sorted 排序
+
+`Sorted` 同样是一个中间操作，它的返参是一个 `Stream` 流。另外，我们可以传入一个 `Comparator` 用来自定义排序，如果不传，则使用默认的排序规则。
+
+```java
+stringCollection
+    .stream()
+    .sorted()
+    .filter((s) -> s.startsWith("a"))
+    .forEach(System.out::println);
+
+// "aaa1", "aaa2"
+```
+
+需要注意，`sorted` 不会对 `stringCollection` 做出任何改变，`stringCollection` 还是原有的那些个元素，且顺序不变：
+
+```java
+System.out.println(stringCollection);
+// ddd2, aaa2, bbb1, aaa1, bbb3, ccc, bbb2, ddd1
+```
+
+### Map
+
+
+
 
 
 
