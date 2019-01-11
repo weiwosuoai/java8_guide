@@ -26,9 +26,9 @@
 - [八、Streams 流](#Stream-流)
     - [8.1 Filter 过滤](#Filter-过滤)
     - [8.2 Sorted 排序](#Sorted-排序)
-    - [8.3 Map](#Map-转换)
-    - [8.4 Match](#Match-匹配)
-    - [8.5 Count](#Count-计数)
+    - [8.3 Map 转换](#Map-转换)
+    - [8.4 Match 匹配](#Match-匹配)
+    - [8.5 Count 计数](#Count-计数)
     - [8.6 Reduce](#Reduce)
 - [九、Parallel Streams 并行流](#Parallel-Streams-并行流)
 - 10.`Maps`;
