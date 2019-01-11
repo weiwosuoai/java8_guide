@@ -4,7 +4,11 @@
 
 ---
 
-> 想拥有更好的阅读体验，请访问 :corn:   [**Java8 新特性指导手册**](https://www.exception.site/course/3/chapter/1)   :corn:
+<p align="center">
+ ★★★ 如果这篇教程有帮助到你, **Star** 一下吧, 你也可以访问我的网站来阅读此教程 :corn: <a href="https://www.exception.site/course/3/chapter/1">Java8 新特性指导手册</a> :corn:. 谢谢啦! ★★★
+</p>
+
+---
 
 ## 教程目录：
 
