@@ -2,10 +2,11 @@
 
 > 本教程翻译整理自 [https://github.com/winterbe/java8-tutorial](https://github.com/winterbe/java8-tutorial)
 
+
 ---
 
 <p align="center">
- ★★★ 如果这篇教程有帮助到你, **Star** 一下吧, 你也可以访问我的网站来阅读此教程 :corn: <a href="https://www.exception.site/course/3/chapter/1">Java8 新特性指导手册</a> :corn:. 谢谢啦! ★★★
+ ★★★ 如果此教程有帮助到你, **Star** 一下吧, 你还可以访问 <a href="https://www.exception.site/course/3/chapter/1">Java8 新特性指导手册</a>. 谢谢啦! ★★★
 </p>
 
 ---
