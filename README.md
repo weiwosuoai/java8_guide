@@ -6,7 +6,7 @@
 ---
 
 <p align="center">
- ★★★ 如果此教程有帮助到你, <b>Star</b> 一下吧, 你还可以访问 <a href="https://www.exception.site/course/3/chapter/1">Java8 新特性指导手册</a> 来阅读它. 谢谢啦! ★★★
+ ★★★ 如果此教程有帮助到你, <b>Star</b> 一下吧, 你还可以访问 :fire: <a href="https://www.exception.site/course/3/chapter/1">Java8 新特性指导手册</a> :fire: 来阅读它. 谢谢啦! ★★★
 </p>
 
 ---
