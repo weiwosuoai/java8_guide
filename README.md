@@ -26,8 +26,11 @@
 - [八、Streams 流](#Stream-流)
     - [8.1 Filter 过滤](#Filter-过滤)
     - [8.2 Sorted 排序](#Sorted-排序)
-    - [8.3 Map](#Map)
-- 9.并行流（`Parallel Streams`）;
+    - [8.3 Map](#Map-转换)
+    - [8.4 Match](#Match-匹配)
+    - [8.5 Count](#Count-计数)
+    - [8.6 Reduce](#Reduce)
+- [九、Parallel Streams 并行流](#Parallel-Streams-并行流)
 - 10.`Maps`;
 - 11.新添加的日期 API;
 - 12.注解（`Annotations`）;
@@ -522,7 +525,7 @@ System.out.println(stringCollection);
 // ddd2, aaa2, bbb1, aaa1, bbb3, ccc, bbb2, ddd1
 ```
 
-### Map
+### Map 转换
 
 中间操作 `Map` 能够帮助我们将 `List` 中的每一个元素做功能处理。例如下面的示例，通过 `map` 我们将每一个 `string` 转成大写：
 
@@ -536,10 +539,69 @@ stringCollection
 // "DDD2", "DDD1", "CCC", "BBB3", "BBB2", "AAA2", "AAA1"
 ```
 
-另外，我们还可以做对象之间的转换，业务中比较常用的是将 `DO`（数据库对象） 转换成 `DTO`（业务对象） 对象。
+另外，我们还可以做对象之间的转换，业务中比较常用的是将 `DO`（数据库对象） 转换成 `DTO`（业务对象） 。
 
+### Match 匹配
 
+顾名思义，`match` 用来做匹配操作，它的返回值是一个 `boolean` 类型。通过 `match`, 我们可以方便的验证一个 `list` 中是否存在某个类型的元素。
 
+```java
+// 验证 list 中 string 是否有以 a 开头的, 匹配到第一个，即返回 true
+boolean anyStartsWithA =
+    stringCollection
+        .stream()
+        .anyMatch((s) -> s.startsWith("a"));
+
+System.out.println(anyStartsWithA);      // true
+
+// 验证 list 中 string 是否都是以 a 开头的
+boolean allStartsWithA =
+    stringCollection
+        .stream()
+        .allMatch((s) -> s.startsWith("a"));
+
+System.out.println(allStartsWithA);      // false
+
+// 验证 list 中 string 是否都不是以 z 开头的,
+boolean noneStartsWithZ =
+    stringCollection
+        .stream()
+        .noneMatch((s) -> s.startsWith("z"));
+
+System.out.println(noneStartsWithZ);      // true
+```
+
+### Count 计数
+
+`count` 是一个终端操作，它能够统计 `stream` 流中的元素总数，返回值是 `long` 类型。
+
+```java
+// 先对 list 中字符串开头为 b 进行过滤，让后统计数量
+long startsWithB =
+    stringCollection
+        .stream()
+        .filter((s) -> s.startsWith("b"))
+        .count();
+
+System.out.println(startsWithB);    // 3
+```
+
+### Reduce
+
+`Reduce` 中文翻译为：_减少、缩小_。通过入参的 `Function`，我们能够将 `list` 归约成一个值。它的返回类型是 `Optional` 类型。
+
+```java
+Optional<String> reduced =
+    stringCollection
+        .stream()
+        .sorted()
+        .reduce((s1, s2) -> s1 + "#" + s2);
+
+reduced.ifPresent(System.out::println);
+// "aaa1#aaa2#bbb1#bbb2#bbb3#ccc#ddd1#ddd2"
+```
+
+## Parallel-Streams 并行流
 
 
 
