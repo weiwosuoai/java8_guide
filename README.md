@@ -31,6 +31,8 @@
     - [8.5 Count 计数](#Count-计数)
     - [8.6 Reduce](#Reduce)
 - [九、Parallel Streams 并行流](#Parallel-Streams-并行流)
+    - [9.1 顺序流排序](#顺序流排序)
+    - [9.2 并行流排序](#并行流排序)
 - 10.`Maps`;
 - 11.新添加的日期 API;
 - 12.注解（`Annotations`）;
@@ -539,7 +541,7 @@ stringCollection
 // "DDD2", "DDD1", "CCC", "BBB3", "BBB2", "AAA2", "AAA1"
 ```
 
-另外，我们还可以做对象之间的转换，业务中比较常用的是将 `DO`（数据库对象） 转换成 `DTO`（业务对象） 。
+另外，我们还可以做对象之间的转换，业务中比较常用的是将 `DO`（数据库对象） 转换成 `BO`（业务对象） 。
 
 ### Match 匹配
 
@@ -602,6 +604,69 @@ reduced.ifPresent(System.out::println);
 ```
 
 ## Parallel-Streams 并行流
+
+前面章节我们说过，`stream` 流是支持**顺序**和**并行**的。顺序流操作是单线程操作，而并行流是通过多线程来处理的，能够充分利用物理机
+多核 CPU 的优势，同时处理速度更快。
+
+首先，我们创建一个包含 1000000 UUID list 集合。 
+
+```java
+int max = 1000000;
+List<String> values = new ArrayList<>(max);
+for (int i = 0; i < max; i++) {
+    UUID uuid = UUID.randomUUID();
+    values.add(uuid.toString());
+}
+```
+
+分别通过顺序流和并行流，对这个 list 进行排序，测算耗时:
+
+### 顺序流排序
+
+```java
+// 纳秒
+long t0 = System.nanoTime();
+
+long count = values.stream().sorted().count();
+System.out.println(count);
+
+long t1 = System.nanoTime();
+
+// 纳秒转微秒
+long millis = TimeUnit.NANOSECONDS.toMillis(t1 - t0);
+System.out.println(String.format("顺序流排序耗时: %d ms", millis));
+
+// 顺序流排序耗时: 899 ms
+
+```
+
+### 并行流排序
+
+```java
+// 纳秒
+long t0 = System.nanoTime();
+
+long count = values.parallelStream().sorted().count();
+System.out.println(count);
+
+long t1 = System.nanoTime();
+
+// 纳秒转微秒
+long millis = TimeUnit.NANOSECONDS.toMillis(t1 - t0);
+System.out.println(String.format("并行流排序耗时: %d ms", millis));
+
+// 并行流排序耗时: 472 ms
+```
+
+正如你所见，同样的逻辑处理，通过并行流，我们的性能提升了近 **50%**。完成这一切，我们需要做的仅仅是将 `stream` 改成了 `parallelStream`。
+
+
+
+
+
+
+
+
 
 
 
