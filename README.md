@@ -38,7 +38,7 @@
 - [九、Parallel Streams 并行流](#Parallel-Streams-并行流)
     - [9.1 顺序流排序](#顺序流排序)
     - [9.2 并行流排序](#并行流排序)
-- [十、Map (非 Stream 流的 map 转换)](#Map-(非-Stream-流的-map-转换))
+- [十、Map 集合](#Map-集合)
 - 11.新添加的日期 API;
 - 12.注解（`Annotations`）;
 
@@ -665,7 +665,7 @@ System.out.println(String.format("并行流排序耗时: %d ms", millis));
 
 正如你所见，同样的逻辑处理，通过并行流，我们的性能提升了近 **50%**。完成这一切，我们需要做的仅仅是将 `stream` 改成了 `parallelStream`。
 
-## Map (非 Stream 流的 map 转换)
+## Map 集合
 
 前面已经提到过 `Map` 是不支持 `Stream` 流的，因为 `Map` 接口并没有像 `Collection` 接口那样，定义了 `stream()` 方法。但是，我们可以对其 `key`, `values`, `entry` 使用
 流操作，如 `map.keySet().stream()`, `map.values().stream()` 和 `map.entrySet().stream()`.
