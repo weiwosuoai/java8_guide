@@ -39,7 +39,7 @@
     - [9.1 顺序流排序](#顺序流排序)
     - [9.2 并行流排序](#并行流排序)
 - [十、Map 集合](#Map-集合)
-- 11.新添加的日期 API;
+- [十一、新的日期 API](#新的日期-API)
 - 12.注解（`Annotations`）;
 
 也希望学完本系列教程的小伙伴能够熟练掌握和应用 Java8 的各种特性，使其成为在工作中的一门利器。废话不多说，让我们一起开启 Java8 新特性之旅吧！
@@ -737,6 +737,15 @@ map.get(9);             // val9
 map.merge(9, "concat", (value, newValue) -> value.concat(newValue));
 map.get(9);             // val9concat
 ```
+
+## 新的日期 API
+
+Java 8 中在包 `java.time` 下添加了新的日期 API. 它和 Joda-Time 库相似，但又不完全相同。接下来，我会通过一些示例代码介绍一下新 API 中
+最关键的特性：
+
+### Clock
+
+// TODO
 
 
 
