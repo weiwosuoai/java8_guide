@@ -6,7 +6,7 @@
 ---
 
 <p align="center">
- ★★★ 如果此教程有帮助到你, <b>Star</b> 一下吧, 你还可以访问 :fire: <a href="https://www.exception.site/course/3/chapter/1">Java8 新特性指导手册</a> :fire: 来阅读它. 谢谢啦! ★★★
+ ★★★ 如果此教程有帮助到你, <b>Star</b> 一下吧, 你还可以访问 :fire: <a href="https://www.exception.site/course/3/chapter/1">《Java8 新特性指导手册》</a> :fire: 来阅读它. 谢谢啦! ★★★
 </p>
 
 ---
@@ -38,7 +38,7 @@
 - [九、Parallel Streams 并行流](#Parallel-Streams-并行流)
     - [9.1 顺序流排序](#顺序流排序)
     - [9.2 并行流排序](#并行流排序)
-- 10.`Maps`;
+- [十、Map (非 Stream 流的 map 转换)](#Map-(非-Stream-流的-map-转换))
 - 11.新添加的日期 API;
 - 12.注解（`Annotations`）;
 
@@ -665,6 +665,75 @@ System.out.println(String.format("并行流排序耗时: %d ms", millis));
 
 正如你所见，同样的逻辑处理，通过并行流，我们的性能提升了近 **50%**。完成这一切，我们需要做的仅仅是将 `stream` 改成了 `parallelStream`。
 
+## Map (非 Stream 流的 map 转换)
+
+前面已经提到过 `Map` 是不支持 `Stream` 流的，因为 `Map` 接口并没有像 `Collection` 接口那样，定义了 `stream()` 方法。但是，我们可以对其 `key`, `values`, `entry` 使用
+流操作，如 `map.keySet().stream()`, `map.values().stream()` 和 `map.entrySet().stream()`.
+
+另外, JDK 8 中对 map 提供了一些其他新特性:
+
+```java
+Map<Integer, String> map = new HashMap<>();
+
+for (int i = 0; i < 10; i++) {
+    // 与老版不同的是，putIfAbent() 方法在 put 之前，
+    // 会判断 key 是否已经存在，存在则直接返回 value, 否则 put, 再返回 value
+    map.putIfAbsent(i, "val" + i);
+}
+
+// forEach 可以很方便地对 map 进行遍历操作
+map.forEach((key, value) -> System.out.println(value));
+```
+
+除了上面的 putIfAbsent() 和 forEach() 外，我们还可以很方便地对某个 key 的值做相关操作：
+
+```java
+// computeIfPresent(), 当 key 存在时，才会做相关处理
+// 如下：对 key 为 3 的值，内部会先判断值是否存在，存在，则做 value + key 的拼接操作
+map.computeIfPresent(3, (num, val) -> val + num);
+map.get(3);             // val33
+
+// 先判断 key 为 9 的元素是否存在，存在，则做删除操作
+map.computeIfPresent(9, (num, val) -> null);
+map.containsKey(9);     // false
+
+// computeIfAbsent(), 当 key 不存在时，才会做相关处理
+// 如下：先判断 key 为 23 的元素是否存在，不存在，则添加
+map.computeIfAbsent(23, num -> "val" + num);
+map.containsKey(23);    // true
+
+// 先判断 key 为 3 的元素是否存在，存在，则不做任何处理
+map.computeIfAbsent(3, num -> "bam");
+map.get(3);             // val33
+```
+
+关于删除操作，JDK 8 中提供了能够新的 remove() API:
+
+```java
+map.remove(3, "val3");
+map.get(3);             // val33
+
+map.remove(3, "val33");
+map.get(3);             // null
+```
+
+如上代码，只有当给定的 key 和 value 完全匹配时，才会执行删除操作。
+
+关于添加方法，JDK 8 中提供了带有默认值的 get() 方法：
+
+```java
+// 若 key 42 不存在，则返回 not found
+map.getOrDefault(42, "not found");  // not found
+```
+
+
+
+
+
+
+
+
+        
 
 
 
