@@ -11,7 +11,7 @@
 
 ---
 
-## 教程目录：
+## 目录：
 
 - [一、接口内允许添加默认实现的方法](#接口内允许添加默认实现的方法)
 - [二、Lambda 表达式](#Lambda-表达式)
@@ -740,10 +740,24 @@ map.get(9);             // val9concat
 
 ## 新的日期 API
 
-Java 8 中在包 `java.time` 下添加了新的日期 API. 它和 Joda-Time 库相似，但又不完全相同。接下来，我会通过一些示例代码介绍一下新 API 中
+Java 8 中在包 `java.time` 下添加了新的日期 API. 它和 [Joda-Time](http://www.joda.org/joda-time/) 库相似，但又不完全相同。接下来，我会通过一些示例代码介绍一下新 API 中
 最关键的特性：
 
 ### Clock
+
+`Clock` 提供对当前日期和时间的访问。我们可以利用它来替代 `System.currentTimeMillis()` 方法。另外，通过 `clock.instant()` 能够获取一个 `instant` 实例，
+此实例能够方便地转换成老版本中的 `java.util.Date` 对象。 
+
+```java
+Clock clock = Clock.systemDefaultZone();
+long millis = clock.millis();
+
+Instant instant = clock.instant();
+Date legacyDate = Date.from(instant);   // legacy java.util.Date
+```
+
+### Timezones 时区
+
 
 // TODO
 
