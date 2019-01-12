@@ -670,7 +670,7 @@ System.out.println(String.format("并行流排序耗时: %d ms", millis));
 前面已经提到过 `Map` 是不支持 `Stream` 流的，因为 `Map` 接口并没有像 `Collection` 接口那样，定义了 `stream()` 方法。但是，我们可以对其 `key`, `values`, `entry` 使用
 流操作，如 `map.keySet().stream()`, `map.values().stream()` 和 `map.entrySet().stream()`.
 
-另外, JDK 8 中对 map 提供了一些其他新特性:
+另外, JDK 8 中对 `map` 提供了一些其他新特性:
 
 ```java
 Map<Integer, String> map = new HashMap<>();
@@ -685,7 +685,7 @@ for (int i = 0; i < 10; i++) {
 map.forEach((key, value) -> System.out.println(value));
 ```
 
-除了上面的 putIfAbsent() 和 forEach() 外，我们还可以很方便地对某个 key 的值做相关操作：
+除了上面的 `putIfAbsent()` 和 `forEach()` 外，我们还可以很方便地对某个 `key` 的值做相关操作：
 
 ```java
 // computeIfPresent(), 当 key 存在时，才会做相关处理
@@ -707,7 +707,7 @@ map.computeIfAbsent(3, num -> "bam");
 map.get(3);             // val33
 ```
 
-关于删除操作，JDK 8 中提供了能够新的 remove() API:
+关于删除操作，JDK 8 中提供了能够新的 `remove()` API:
 
 ```java
 map.remove(3, "val3");
@@ -717,14 +717,32 @@ map.remove(3, "val33");
 map.get(3);             // null
 ```
 
-如上代码，只有当给定的 key 和 value 完全匹配时，才会执行删除操作。
+如上代码，只有当给定的 `key` 和 `value` 完全匹配时，才会执行删除操作。
 
-关于添加方法，JDK 8 中提供了带有默认值的 get() 方法：
+关于添加方法，JDK 8 中提供了带有默认值的 `getOrDefault()` 方法：
 
 ```java
 // 若 key 42 不存在，则返回 not found
 map.getOrDefault(42, "not found");  // not found
 ```
+
+对于 `value` 的合并操作也变得更加简单：
+
+```java
+// merge 方法，会先判断进行合并的 key 是否存在，不存在，则会添加元素
+map.merge(9, "val9", (value, newValue) -> value.concat(newValue));
+map.get(9);             // val9
+
+// 若 key 的元素存在，则对 value 执行拼接操作
+map.merge(9, "concat", (value, newValue) -> value.concat(newValue));
+map.get(9);             // val9concat
+```
+
+
+
+
+
+
 
 
 
