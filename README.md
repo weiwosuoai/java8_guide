@@ -40,7 +40,12 @@
     - [9.2 并行流排序](#并行流排序)
 - [十、Map 集合](#Map-集合)
 - [十一、新的日期 API](#新的日期-API)
-- 12.注解（`Annotations`）;
+    - [11.1 Clock](#Clock)
+    - [11.2 Timezones 时区](#Timezones-时区)
+    - [11.3 LocalTime](#LocalTime)
+    - [11.4 LocalDate](#LocalDate)
+    - [11.4 LocalDateTime](#LocalDateTime)
+- [十二、Annotations 注解](#Annotations-注解)
 
 也希望学完本系列教程的小伙伴能够熟练掌握和应用 Java8 的各种特性，使其成为在工作中的一门利器。废话不多说，让我们一起开启 Java8 新特性之旅吧！
 
@@ -870,8 +875,89 @@ Date legacyDate = Date.from(instant);
 System.out.println(legacyDate);     // Wed Dec 31 23:59:59 CET 2014
 ```
 
-格式化 `LocalDateTime` 对象就和格式化 LocalDate 或者 LocalTime 一样。除了使用预定义的格式以外，我们还可以创建自定义的格式化对象，
-然后匹配我们自定义的格式。
+格式化 `LocalDateTime` 对象就和格式化 LocalDate 或者 LocalTime 一样。除了使用预定义的格式以外，也可以自定义格式化输出。
+
+```java
+DateTimeFormatter formatter =
+    DateTimeFormatter
+        .ofPattern("MMM dd, yyyy - HH:mm");
+
+LocalDateTime parsed = LocalDateTime.parse("Nov 03, 2014 - 07:13", formatter);
+String string = formatter.format(parsed);
+System.out.println(string);     // Nov 03, 2014 - 07:13
+```
+
+> 注意：和 `java.text.NumberFormat` 不同，新的 `DateTimeFormatter` 类是 `final` 类型的，同时也是线程安全的。更多细节请查看[这里](http://download.java.net/jdk8/docs/api/java/time/format/DateTimeFormatter.html)
+
+## Annotations 注解
+
+在 Java 8 中，注解是可以重复的。让我通过下面的示例代码，来看看到底是咋回事。
+
+首先，我们定义一个包装注解，里面包含了一个有着实际注解的数组：
+
+```java
+@interface Hints {
+    Hint[] value();
+}
+
+@Repeatable(Hints.class)
+@interface Hint {
+    String value();
+}
+```
+
+Java 8 中，通过 `@Repeatable`，允许我们对同一个类使用多重注解：
+
+第一种形态：使用注解容器（老方法）
+
+```java
+@Hints({@Hint("hint1"), @Hint("hint2")})
+class Person {}
+```
+
+第二种形态：使用可重复注解（新方法）
+
+```java
+@Hint("hint1")
+@Hint("hint2")
+class Person {}
+```
+
+使用第二种形态，Java 编译器能够在内部自动对 `@Hint` 进行设置。这对于需要通过反射来读取注解信息时，是非常重要的。
+
+```java
+Hint hint = Person.class.getAnnotation(Hint.class);
+System.out.println(hint);                   // null
+
+Hints hints1 = Person.class.getAnnotation(Hints.class);
+System.out.println(hints1.value().length);  // 2
+
+Hint[] hints2 = Person.class.getAnnotationsByType(Hint.class);
+System.out.println(hints2.length);          // 2
+```
+
+尽管我们绝对不会在 `Person` 类上声明 `@Hints` 注解，但是它的信息仍然是可以通过 `getAnnotation(Hints.class)` 来读取的。
+并且，`getAnnotationsByType` 方法会更方便，因为它赋予了所有 `@Hints` 注解标注的方法直接的访问权限。
+
+```java
+@Target({ElementType.TYPE_PARAMETER, ElementType.TYPE_USE})
+@interface MyAnnotation {}
+```
+
+## 结语
+
+Java 8 新特性的编程指南到此就告一段落了。当然，还有很多内容需要进一步研究和说明。这就需要靠读者您来对 JDK 8 进行探究了，
+例如：`Arrays.parallelSort`, `StampedLock` 和 `CompletableFuture` 等等 ———— 我这里只是举几个例子而已。
+                        
+最后，我希望这个博文能够对您有所帮助，也希望您阅读愉快，谢谢啦。
+
+
+
+
+
+
+
+
 
 
 
