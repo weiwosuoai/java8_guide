@@ -946,10 +946,10 @@ System.out.println(hints2.length);          // 2
 
 ## 结语
 
-Java 8 新特性的编程指南到此就告一段落了。当然，还有很多内容需要进一步研究和说明。这就需要靠读者您来对 JDK 8 进行探究了，
-例如：`Arrays.parallelSort`, `StampedLock` 和 `CompletableFuture` 等等 ———— 我这里只是举几个例子而已。
+Java 8 新特性的编程指南到此就告一段落了。当然，还有很多内容需要进一步研究和说明。这就需要靠读者您来对 JDK 8 进一步探究了，
+例如：`Arrays.parallelSort`, `StampedLock` 和 `CompletableFuture` 等等，我这里也仅是起到抛砖引玉的作用而已。
                         
-最后，我希望这个博文能够对您有所帮助，也希望您阅读愉快，谢谢啦。
+最后，我希望这个博文能够对您有所帮助，也希望您阅读愉快，下次见。
 
 
 
