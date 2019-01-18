@@ -46,6 +46,7 @@
     - [11.4 LocalDate](#LocalDate)
     - [11.4 LocalDateTime](#LocalDateTime)
 - [十二、Annotations 注解](#Annotations-注解)
+- [Java8 相关拓展博文](#Java8-相关拓展博文)
 
 也希望学完本系列教程的小伙伴能够熟练掌握和应用 Java8 的各种特性，使其成为在工作中的一门利器。废话不多说，让我们一起开启 Java8 新特性之旅吧！
 
@@ -951,7 +952,11 @@ Java 8 新特性的编程指南到此就告一段落了。当然，还有很多�
                         
 最后，我希望这个教程能够对您有所帮助，也希望您阅读愉快。
 
-## 小哈的微信公众号
+## Java8 相关拓展博文
+
+- [如何在 Java8 中风骚走位避开空指针异常](https://github.com/winterbe/java8-tutorial)
+
+## 小哈的微信公众号，欢迎关注
 
 ![](https://exception-image-bucket.oss-cn-hangzhou.aliyuncs.com/154753049695780)
 
