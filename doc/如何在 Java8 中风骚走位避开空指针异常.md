@@ -1,5 +1,7 @@
 # 如何在 Java8 中风骚走位避开空指针异常
 
+> 文章整理翻译自 [https://winterbe.com/posts/2015/03/15/avoid-null-checks-in-java/](https://winterbe.com/posts/2015/03/15/avoid-null-checks-in-java/)
+
 ![](https://exception-image-bucket.oss-cn-hangzhou.aliyuncs.com/154773518012868)
 
 要说 Java 编程中哪个异常是你印象最深刻的，那 `NullPointerException` 空指针可以说是臭名昭著的。不要说初级程序员会碰到，
