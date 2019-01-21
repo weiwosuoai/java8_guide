@@ -1,4 +1,4 @@
-# Java8 并发篇(一) | 线程与执行器
+# Java8 并发篇(一) 线程与执行器
 
 > 本文翻译整理自 https://winterbe.com/posts/2015/04/07/java8-concurrency-tutorial-thread-executor-examples/
 
