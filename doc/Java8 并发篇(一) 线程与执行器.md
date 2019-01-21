@@ -364,3 +364,7 @@ executor.scheduleWithFixedDelay(task, 0, 1, TimeUnit.SECONDS);
 ## 总结
 
 这篇文章主要探讨了如何在用 `lambda` 表达式，在 Java8 中使用线程和执行器，并演示了相关示例代码。除此之外，我们还学习了 `Callable` 和 `Future`, 超时设置，任务的批量提交 `invokeAll()` 和 `invokeAny()` API。最后, 了解了如何在 Java8 中使用任务调度 `ScheduledExecutor`，希望你能有所收获。
+
+## 小哈的微信公众号，欢迎关注
+
+![](https://exception-image-bucket.oss-cn-hangzhou.aliyuncs.com/154753049695780)
