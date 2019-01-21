@@ -12,7 +12,7 @@
 
 关于 JDK 中 [并发 API](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/package-summary.html) 是在 JDK1.5 中被首次引入的，并且在后续的版本中得到不断地增强。这篇文章中介绍的大部分名词概念同样适用于老版本，这一点你不用担心。本文的着重点在代码演示，如何使用 `lambda` 表达式以及新特性相关。
 
-如果你对 `lambda` 表达式不是很熟悉，我推荐你先阅读我之前的文章：
+如果你对 `lambda` 表达式不是很熟悉，我推荐你先阅读我之前的文章：[Java8 新特性指导手册](https://github.com/weiwosuoai/java8_guide)
 
 ## 目录
 
