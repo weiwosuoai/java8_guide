@@ -2,32 +2,43 @@
 
 > 本教程翻译整理自 [https://github.com/winterbe/java8-tutorial](https://github.com/winterbe/java8-tutorial)
 
-
 ---
 
 <p align="center">
  ★★★ 如果此教程有帮助到您, <b>Star</b> 一下吧, 您还可以访问 :fire: <a href="https://www.exception.site/java8">《Java8 新特性指导手册》</a> :fire: 来阅读它. 谢谢啦! ★★★
 </p>
-
 ---
+
+## 相关学习博文
+
+1. [Java8 Stream 流教教程](<https://www.exception.site/java8/java8-stream-tutorial>)
+2. [如何在 Java8 中风骚走位避开空指针异常](<http://localhost:8090/java8/java8-avoid-null-check>)
+3. [Java8 并发篇(一) | 线程与执行器](<https://www.exception.site/java8/java8-concurrency-tutorial-thread-exector>)
 
 ## 目录：
 
 - [一、接口内允许添加默认实现的方法](#接口内允许添加默认实现的方法)
+
 - [二、Lambda 表达式](#Lambda-表达式)
+
 - [三、函数式接口 Functional Interface](#函数式接口-Functional-Interface)
+
 - [四、便捷的引用类的构造器及方法](#便捷的引用类的构造器及方法)
+
 - [五、Lambda 访问外部变量及接口默认方法](#Lambda-访问外部变量及接口默认方法)
     - [5.1 访问局部变量](#访问局部变量)
     - [5.2 访问成员变量和静态变量](#访问成员变量和静态变量)
     - [5.3 访问接口的默认方法](#访问接口的默认方法)
+    
 - [六、内置的函数式接口](#内置的函数式接口)
     - [6.1 Predicate 断言](#Predicate-断言)
     - [6.2 Function](#Function)
     - [6.3 Supplier 生产者](#Supplier-生产者)
     - [6.4 Consumer 消费者](#Consumer-消费者)
     - [6.5 Comparator](#Comparator)
+    
 - [七、Optional](#Optional)
+
 - [八、Streams 流](#Stream-流)
     - [8.1 Filter 过滤](#Filter-过滤)
     - [8.2 Sorted 排序](#Sorted-排序)
@@ -35,20 +46,23 @@
     - [8.4 Match 匹配](#Match-匹配)
     - [8.5 Count 计数](#Count-计数)
     - [8.6 Reduce](#Reduce)
+    
 - [九、Parallel Streams 并行流](#Parallel-Streams-并行流)
     - [9.1 顺序流排序](#顺序流排序)
     - [9.2 并行流排序](#并行流排序)
+    
 - [十、Map 集合](#Map-集合)
+
 - [十一、新的日期 API](#新的日期-API)
     - [11.1 Clock](#Clock)
     - [11.2 Timezones 时区](#Timezones-时区)
     - [11.3 LocalTime](#LocalTime)
     - [11.4 LocalDate](#LocalDate)
     - [11.4 LocalDateTime](#LocalDateTime)
+    
 - [十二、Annotations 注解](#Annotations-注解)
-- [十三、Java8 相关拓展博文](#Java8-相关拓展博文)
-    - [13.1 如何在 Java8 中风骚走位避开空指针异常](https://github.com/weiwosuoai/java8_guide/blob/master/doc/%E5%A6%82%E4%BD%95%E5%9C%A8%20Java8%20%E4%B8%AD%E9%A3%8E%E9%AA%9A%E8%B5%B0%E4%BD%8D%E9%81%BF%E5%BC%80%E7%A9%BA%E6%8C%87%E9%92%88%E5%BC%82%E5%B8%B8.md)
-    - [13.2 Java8 并发篇(一) 线程与执行器](https://github.com/weiwosuoai/java8_guide/blob/master/doc/Java8%20%E5%B9%B6%E5%8F%91%E7%AF%87(%E4%B8%80)%20%E7%BA%BF%E7%A8%8B%E4%B8%8E%E6%89%A7%E8%A1%8C%E5%99%A8.md)
+
+    
 
 也希望学完本系列教程的小伙伴能够熟练掌握和应用 Java8 的各种特性，使其成为在工作中的一门利器。废话不多说，让我们一起开启 Java8 新特性之旅吧！
 
@@ -149,13 +163,13 @@ names.sort((a, b) -> b.compareTo(a));
     interface Converter<F, T> {
         T convert(F from);
     }
-	
+
 示例代码2：
 
 	Converter<String, Integer> converter = (from) -> Integer.valueOf(from);
 	Integer converted = converter.convert("123");
 	System.out.println(converted);    // 123
-	
+
 > 注意：上面的示例代码，即使去掉 `@FunctionalInterface` 也是好使的，它仅仅是一种约束而已。
 
 ## 便捷的引用类的构造器及方法
@@ -286,7 +300,7 @@ Converter<Integer, String> converter = (from) -> {
 	return value;
 };
 ```
-    
+
 ### 访问成员变量和静态变量
 
 上一章节中，了解了如何在 Lambda 表达式中访问局部变量。与局部变量相比，在 Lambda 表达式中对成员变量和静态变量拥有读写权限：
@@ -320,7 +334,7 @@ class Lambda4 {
         }
     }
 ```
-    
+
 ### 访问接口的默认方法
 
 还记得第一章节中定义的那个 `Formula` (公式) 接口吗？
@@ -382,7 +396,7 @@ Predicate<Boolean> isNull = Objects::isNull;
 Predicate<String> isEmpty = String::isEmpty;
 Predicate<String> isNotEmpty = isEmpty.negate();
 ```
-    
+
 ### Function
 
 `Function` 函数式接口的作用是，我们可以为其提供一个原料，他给生产一个最终的产品。通过它提供的默认方法，组合,链行处理(`compose`, `andThen`)：
@@ -393,7 +407,7 @@ Function<String, String> backToString = toInteger.andThen(String::valueOf);
 
 backToString.apply("123");     // "123"
 ```
-    
+
 ### Supplier 生产者
 
 `Supplier` 与 `Function` 不同，它不接受入参，直接为我们生产一个指定的结果，有点像生产者模式：
@@ -416,7 +430,7 @@ class Person {
 Supplier<Person> personSupplier = Person::new;
 personSupplier.get();   // new Person
 ```
-    
+
 ### Consumer 消费者
 
 对于 `Consumer`，我们需要提供入参，用来被消费，如下面这段示例代码：
@@ -433,13 +447,13 @@ class Person {
         this.lastName = lastName;
     }
 }
-``` 
+```
 
 ```java
 Consumer<Person> greeter = (p) -> System.out.println("Hello, " + p.firstName);
 greeter.accept(new Person("Luke", "Skywalker"));
 ```
-    
+
 ### Comparator
 
 `Comparator` 在 Java 8 之前是使用比较普遍的。Java 8 中除了将其升级成了函数式接口，还为它拓展了一些默认方法：
@@ -1000,7 +1014,7 @@ Java 8 新特性的编程指南到此就告一段落了。当然，还有很多�
 
 
 
-        
+​        
 
 
 
