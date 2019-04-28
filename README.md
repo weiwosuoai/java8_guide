@@ -7,13 +7,14 @@
 <p align="center">
  ★★★ 如果此教程有帮助到您, <b>Star</b> 一下吧, 您还可以访问 :fire: <a href="https://www.exception.site/java8">《Java8 新特性指导手册》</a> :fire: 来阅读它. 谢谢啦! ★★★
 </p>
+
 ---
 
 ## 相关学习博文
 
-1. [Java8 Stream 流教教程](<https://www.exception.site/java8/java8-stream-tutorial>)
-2. [如何在 Java8 中风骚走位避开空指针异常](<http://localhost:8090/java8/java8-avoid-null-check>)
-3. [Java8 并发篇(一) | 线程与执行器](<https://www.exception.site/java8/java8-concurrency-tutorial-thread-exector>)
+- [Java8 Stream 流教教程](<https://www.exception.site/java8/java8-stream-tutorial>)
+- [如何在 Java8 中风骚走位避开空指针异常](<http://localhost:8090/java8/java8-avoid-null-check>)
+- [Java8 并发篇(一) | 线程与执行器](<https://www.exception.site/java8/java8-concurrency-tutorial-thread-exector>)
 
 ## 目录：
 
