@@ -10,7 +10,7 @@
 
 ---
 
-## 相关学习博文
+## Java8 其他相关学习博文
 
 - [Java8 Stream 流教教程](<https://www.exception.site/java8/java8-stream-tutorial>)
 - [如何在 Java8 中风骚走位避开空指针异常](<http://localhost:8090/java8/java8-avoid-null-check>)
