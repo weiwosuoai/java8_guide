@@ -19,7 +19,6 @@
 ## 目录：
 
 - [一、接口内允许添加默认实现的方法](#接口内允许添加默认实现的方法)
-
 - [二、Lambda 表达式](#Lambda-表达式)
 
 - [三、函数式接口 Functional Interface](#函数式接口-Functional-Interface)
