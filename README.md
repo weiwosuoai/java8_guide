@@ -1,4 +1,4 @@
-# Java8 新特性指导手册
+# Java8 新特性教程
 
 > 本教程翻译整理自 [https://github.com/winterbe/java8-tutorial](https://github.com/winterbe/java8-tutorial)
 
