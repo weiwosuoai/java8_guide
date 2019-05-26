@@ -957,14 +957,11 @@ Java 8 新特性的编程指南到此就告一段落了。当然，还有很多�
                         
 最后，我希望这个教程能够对您有所帮助，也希望您阅读愉快。
 
-## Java8 相关拓展博文
-
-- [如何在 Java8 中风骚走位避开空指针异常](https://github.com/weiwosuoai/java8_guide/blob/master/doc/%E5%A6%82%E4%BD%95%E5%9C%A8%20Java8%20%E4%B8%AD%E9%A3%8E%E9%AA%9A%E8%B5%B0%E4%BD%8D%E9%81%BF%E5%BC%80%E7%A9%BA%E6%8C%87%E9%92%88%E5%BC%82%E5%B8%B8.md)
-- [Java8 并发篇(一) 线程与执行器](https://github.com/weiwosuoai/java8_guide/blob/master/doc/Java8%20%E5%B9%B6%E5%8F%91%E7%AF%87(%E4%B8%80)%20%E7%BA%BF%E7%A8%8B%E4%B8%8E%E6%89%A7%E8%A1%8C%E5%99%A8.md)
-
 ## 小哈的微信公众号，欢迎关注
 
-![](https://exception-image-bucket.oss-cn-hangzhou.aliyuncs.com/154753049695780)
+关注，即可领取小哈整理的各种 Java 学习资料哟，祝您学习愉快！
+
+![](https://exception-image-bucket.oss-cn-hangzhou.aliyuncs.com/155634562788477)
 
 
 
