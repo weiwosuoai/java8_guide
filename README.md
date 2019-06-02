@@ -10,6 +10,8 @@
 
 ---
 
+欢迎关注博主的微信公众号:「<b>小哈学Java</b>」, 关注即可<b>免费无套路领取 100G 小哈整理的各种 Java 学习资料</b>哟，祝您学习愉快！
+
 ## Java8 其他相关学习博文
 
 - [Java8 Stream 流教教程](<https://www.exception.site/java8/java8-stream-tutorial>)
